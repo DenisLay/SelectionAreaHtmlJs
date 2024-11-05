@@ -1,10 +1,28 @@
 window.onload = function() {
+    items = {
+        template: [
+            'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quod, repudiandae.',
+            'Reprehenderit qui rem, quia similique doloribus deserunt quaerat eum perferendis.',
+            'Dolorem quia ipsam commodi quae possimus rerum, officiis inventore maxime?',
+            'Repellendus esse ullam quod mollitia nihil quo asperiores totam suscipit?',
+            'Iste, impedit consectetur repellendus rerum a totam veniam laborum quibusdam!',
+            'Consectetur dolores a sed ad, ea perferendis accusantium optio quisquam.',
+            'Numquam distinctio ab porro recusandae, optio quod quo est impedit!',
+            'Quisquam, adipisci odit expedita est error ipsa voluptatem ea nostrum.',
+            'Nostrum nobis harum dolor rem aut nulla ipsum accusantium perspiciatis!',
+            'Praesentium, reiciendis sunt! Iure quis qui dolorem adipisci, exercitationem nemo.'
+        ],
+        tag: 'p',
+        nodes: []
+    }
+
     const container = document.querySelector('.container');
+    const content = container.querySelector('.content')
     const selection = document.querySelector('.selection');
-    const selectionItems = document.querySelectorAll('.selection_item');
 
     mountSelection(selection, container);
-    mountSelectionItems(selectionItems);
+    mountSelectionItems(content, items);
+    console.log(items);
 }
 
 function mountSelection(selection, container) {
@@ -49,6 +67,8 @@ function mountSelection(selection, container) {
                 selection.style.top = event.clientY + 'px';
                 selection.style.height = startY - event.clientY + 'px';
             }
+
+            
         }
     });
 
@@ -58,14 +78,39 @@ function mountSelection(selection, container) {
     });
 }
 
-function mountSelectionItems(selectionItems) {
-    selectionItems.forEach(item => {
-        mountSelectionItem(item); 
+function mountSelectionItems(root, items) {
+    items.template.forEach(item => {
+        const node = mountSelectionItem(item, items.tag, items.nodes); 
+        root.appendChild(node);
     });
 }
 
-function mountSelectionItem(selectionItem) {
-    selectionItem.addEventListener('click', function() {
-        selectionItem.classList.toggle('selection_item-selected');
+function mountSelectionItem(item, tag, nodes) {
+    const node = document.createElement(tag);
+    node.textContent = item;
+    node.classList.add('selection_item');
+
+    const nodeInfo = {
+        node: node,
+        selected: false,
+        hover: false
+    }
+    nodes.push(nodeInfo);
+    
+    node.addEventListener('click', function() {
+        node.classList.toggle('selection_item-selected');
+        nodeInfo.selected = !nodeInfo.selected;
     });
+
+    node.addEventListener('mouseover', function() {
+        node.classList.add('selection_item-hover');
+        nodeInfo.hover = true;
+    });
+
+    node.addEventListener('mouseout', function() {
+        node.classList.remove('selection_item-hover');
+        nodeInfo.hover = false;
+    });
+
+    return node;
 }

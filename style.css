@@ -13,7 +13,6 @@
     margin: 0 auto;
     width: 1000px;
     height: 100vh;
-    border: 1px solid #ccc;
     line-height: 1.5rem;
 }
 
@@ -43,11 +42,29 @@
 
 .selection_item {
     user-select: none;
+    cursor: pointer;
+}
+
+.selection_item-hover {
+    position: relative;
+}
+
+.selection_item-hover::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #53d9fa91;
+    border: 2px solid #3bc6e99d;
+    border-radius: 3px;
+    opacity: 0.4;
+    z-index: -1;
 }
 
 .selection_item-selected {
     position: relative;
-    cursor: pointer;
 }
 
 .selection_item-selected::after {

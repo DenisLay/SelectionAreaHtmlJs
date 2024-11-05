@@ -1,0 +1,34 @@
+*,
+*::before,
+*::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Open Sans', sans-serif;
+    font-size: 16px;
+}
+
+.container {
+    position: relative;
+    margin: 0 auto;
+    width: 1000px;
+    height: 100vh;
+    border: 1px solid #ccc;
+}
+
+.selection {
+    width: 0;
+    top: 0;
+    left: 0;
+    height: 0;
+    position: absolute;
+    border: 2px solid #53d9fa;
+    border-radius: 2px;
+    background-color: #b3f0ff;
+    opacity: 0;
+    transition: opacity 1s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.selection-visible {
+    opacity: 0.5;
+}

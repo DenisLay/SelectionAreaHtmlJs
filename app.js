@@ -1,8 +1,10 @@
 window.onload = function() {
     const container = document.querySelector('.container');
     const selection = document.querySelector('.selection');
+    const selectionItems = document.querySelectorAll('.selection_item');
 
     mountSelection(selection, container);
+    mountSelectionItems(selectionItems);
 }
 
 function mountSelection(selection, container) {
@@ -53,5 +55,17 @@ function mountSelection(selection, container) {
     container.addEventListener('mouseup', function(event) {
         selection.classList.remove('selection-visible');
         isResizing = false;
+    });
+}
+
+function mountSelectionItems(selectionItems) {
+    selectionItems.forEach(item => {
+        mountSelectionItem(item); 
+    });
+}
+
+function mountSelectionItem(selectionItem) {
+    selectionItem.addEventListener('click', function() {
+        selectionItem.classList.toggle('selection_item-selected');
     });
 }

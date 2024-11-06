@@ -14,6 +14,37 @@
     width: 1000px;
     height: 100vh;
     line-height: 1.5rem;
+    overflow-y: scroll;
+    transition: overflow-y 1s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.container::-webkit-scrollbar {
+    width: 8px;
+}
+
+.container::-webkit-scrollbar-track {
+    /*background: #f1f1f1;*/
+    background: rgba(241, 241, 241, 0.8);
+    border-radius: 10px;
+    opacity: 0.5;
+}
+
+.container::-webkit-scrollbar-thumb {
+    /*background: #888;*/
+    background: rgba(100, 100, 100, 0.3);
+    border-radius: 10px;
+}
+
+.container::-webkit-scrollbar-thumb:hover {
+    /*background: #555;*/
+    background: rgba(100, 100, 100, 0.5);
+}
+
+.content {
+    display: flex;
+    align-items: start;
+    flex-direction: column;
+    gap: 1px;
 }
 
 .selection_container {
@@ -34,6 +65,21 @@
     background-color: #b3f0ff;
     opacity: 0;
     transition: opacity 1s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    pointer-events: none;
+}
+
+.selection-box {
+    position: absolute;
+    border: 2px solid #53d9fa;
+    border-radius: 2px;
+    background-color: #b3f0ff;
+    pointer-events: none;
+    opacity: 0.5;
+    transition: opacity 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.selection-box-hidden {
+    opacity: 0;
 }
 
 .selection-visible {
